@@ -1,0 +1,389 @@
+FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+
+# CO PoF Agent
+
+REST API at the CO
+
+## Sleep Mode [/configuration/sleep_mode]
+
+### Configuration [POST]
+
++ Request (application/json)
+
+        {
+            "RRH_ID": "1",
+            "sleep": true|false
+        }
+        
++ Response 200 (application/json)
+
+        [
+            {
+                "RRH_ID": "1",
+                "RRH_Notification": "ACK|NACK"
+            }
+        ]
+        
++ Response 400 (application/json)
+
+        [
+            {
+                "RRH_ID": "1",
+                "Message": "Bad Request"
+            }
+        ]
+        
+        
+
+## RRH Output Voltage [/configuration/vout]
+
+### Monitoring [GET]
+
++ Request (application/json)
+
+        {
+            "RRH_ID": "1"
+        }
+        
++ Response 200 (application/json)
+
+        [
+            {
+                "RRH_ID": "1",
+                "voltages": [
+                    {
+                        "out1": 6.7,
+                        "enabled": true|false
+                    }, {
+                        "out2": true|false
+                    }
+                ]
+            }
+        ]
+        
++ Response 400 (application/json)
+
+        [
+            {
+                "RRH_ID": "1",
+                "Message": "Bad Request"
+            }
+        ]
+
+
+### Configuration [POST]
+
++ Request (application/json)
+
+        {
+            "RRH_ID": "1",
+            "out1_voltage": 3.0,
+            "out1_voltage_enable": true|false,
+            "out2_voltage": true|false
+        }
+        
++ Response 200 (application/json)
+
+        [
+            {
+                "RRH_ID": "1",
+                "Message": "ACK|NACK"
+            }
+        ]
+        
++ Response 400 (application/json)
+
+        [
+            {
+                "RRH_ID": "1",
+                "Message": "Bad Request"
+            }
+        ]
+
+## RRH Current Drain [/monitoring/current]
+        
+### Monitoring [GET]
+
++ Request (application/json)
+
+        {
+            "RRH_ID": "1"
+        }
+        
++ Response 200 (application/json)
+
+        [
+            {
+                "RRH_ID": "1",
+                "currents": [
+                    {
+                        "Name": "PoF_Channel",
+                        "value": 1.5
+                    }, {
+                        "Name": "Out1(DCD/DC)",
+                        "value": 2.3
+                    }, {
+                        "Name": "Out2(LDO)",
+                        "value": 5.6
+                    }
+                ]
+            }
+        ]
+        
++ Response 400 (application/json)
+
+        [
+            {
+                "RRH_ID": "1",
+                "Message": "Bad Request"
+            }
+        ]        
+
+## RRH Temperature Sensor [/monitoring/temperature]
+        
+### Monitoring [GET]
+
++ Request (application/json)
+
+        {
+            "RRH_ID": "1"
+        }
+        
++ Response 200 (application/json)
+
+        [
+            {
+                "RRH_ID": "1",
+                "Temperatures": [
+                    {
+                        "Name": "Sensor1",
+                        "value": 37.0
+                    }
+                ]
+            }
+        ]
+        
++ Response 400 (application/json)
+
+        [
+            {
+                "RRH_ID": "1",
+                "Message": "Bad Request"
+            }
+        ]
+        
+## RRH Battery [/monitoring/battery]
+        
+### Monitoring [GET]
+
++ Request (application/json)
+
+        {
+            "RRH_ID": "1"
+        }
+        
++ Response 200 (application/json)
+
+        [
+            {
+                "RRH_ID": "1",
+                "Battery": [
+                    {
+                        "Name": "Cell_1",
+                        "value": 4.7
+                    }
+                ]
+            }
+        ]
+        
++ Response 400 (application/json)
+
+        [
+            {
+                "RRH_ID": "1",
+                "Message": "Bad Request"
+            }
+        ]
+
+### Configuration [POST]
+
++ Request (application/json)
+
+        {
+            "RRH_ID": "1",
+            "remote_charge": true|false
+        }
+        
++ Response 200 (application/json)
+
+        [
+            {
+                "RRH_ID": "1",
+                "Message": "ACK|NACK"
+            }
+        ]
+        
++ Response 400 (application/json)
+
+        [
+            {
+                "RRH_ID": "1",
+                "Message": "Bad Request"
+            }
+        ]
+        
+## RRH PA Gain [/configuration/PA]
+
+### Monitoring [GET]
+
++ Request (application/json)
+
+        {
+            "RRH_ID": "1"
+        }
+        
++ Response 200 (application/json)
+
+        [
+            {
+                "RRH_ID": "1",
+                "PA": [
+                    {
+                        "ID": "PA_0",
+                        "value": 2.4
+                    }, {
+                        "ID": "PA_2",
+                        "value": 1.3
+                    }, {
+                        "ID": "PA_14",
+                        "value": 4.7
+                    }, {
+                        "ID": "PA_15",
+                        "value": 1.2
+                    }
+                ]
+            }
+        ]
+        
++ Response 400 (application/json)
+
+        [
+            {
+                "RRH_ID": "1",
+                "Message": "Bad Request"
+            }
+        ]
+
+### Configuration [POST]
+
++ Request (application/json)
+
+        {
+            "RRH_ID": "1",
+            "PA": [
+                    {
+                        "ID": "PA_0",
+                        "value": 5.0
+                    }, {
+                        "ID": "PA_15",
+                        "value": 2.0
+                    }
+                ]
+            
+        }
+        
++ Response 200 (application/json)
+
+        [
+            {
+                "RRH_ID": "1",
+                "Message": "ACK|NACK"
+            }
+        ]
+        
++ Response 400 (application/json)
+
+        [
+            {
+                "RRH_ID": "1",
+                "Message": "Bad Request"
+            }
+        ]
+
+
+## Power Channel Setup [/configuration/powerChannelSetup]
+
+
+### Monitoring [POST]
++ Request (application/json)
+
+        {
+            "PowerChannel_ID": "1"
+        }
+        
++ Response 200 (application/json)
+
+        [
+            {
+                "PowerChannel_ID": "1",
+                "PA": [
+                    {
+                        "ID": "PA_0",
+                        "value": 2.4
+                    }, {
+                        "ID": "PA_2",
+                        "value": 1.3
+                    }, {
+                        "ID": "PA_14",
+                        "value": 4.7
+                    }, {
+                        "ID": "PA_15",
+                        "value": 1.2
+                    }
+                ]
+            }
+        ]
+        
++ Response 400 (application/json)
+
+        [
+            {
+                "RRH_ID": "1",
+                "Message": "Bad Request"
+            }
+        ]
+### Configuration [POST]
+
++ Request (application/json)
+
+        {
+            
+            "PA": [
+                    {
+                        "ID": "PA_0",
+                        "value": 5.0
+                    }, {
+                        "ID": "PA_15",
+                        "value": 2.0
+                    }
+                ]
+            
+        }
+        
++ Response 200 (application/json)
+
+        [
+            {
+                "PowerChannel_ID": "1",
+                "Message": "ACK|NACK"
+            }
+        ]
+        
++ Response 400 (application/json)
+
+        [
+            {
+                "Message": "Bad Request"
+            }
+        ]
