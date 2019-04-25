@@ -315,7 +315,7 @@ REST API at the CO
 ## Power Channel Setup [/configuration/powerChannelSetup]
 
 
-### Monitoring [GETV2]
+### Monitoring [GET]
 + Request (application/json)
 
         {
@@ -327,21 +327,18 @@ REST API at the CO
         [
             {
                 "PowerChannel_ID": "1",
-                "PA": [
+                "Lasers": [
                     {
-                        "ID": "PA_0",
-                        "value": 2.4
+                        "Laser_ID": "LA_0",
+                        "Power_level": 5.0,
+                        "wavelength": 0
                     }, {
-                        "ID": "PA_2",
-                        "value": 1.3
-                    }, {
-                        "ID": "PA_14",
-                        "value": 4.7
-                    }, {
-                        "ID": "PA_15",
-                        "value": 1.2
+                        "Laser_ID": "LA_1",
+                        "Power_level": 2.5,
+                        "wavelength": 1
                     }
-                ]
+                ],
+                "Selected_Core": 8
             }
         ]
         
@@ -359,15 +356,19 @@ REST API at the CO
 
         {
             
-            "PA": [
+            "LaserRequest": [
                     {
-                        "ID": "PA_0",
-                        "value": 5.0
+                        "Laser_ID": "LA_0",
+                        "Power_level": 5.0,
+                        "wavelength": 0
                     }, {
-                        "ID": "PA_15",
-                        "value": 2.0
+                        "Laser_ID": "LA_1",
+                        "Power_level": 2.5,
+                        "wavelength": 1
                     }
-                ]
+                ],
+                "Wanted_core": 8
+                
             
         }
         
@@ -376,7 +377,7 @@ REST API at the CO
         [
             {
                 "PowerChannel_ID": "1",
-                "Message": "ACK|NACK"
+                "Message": "ACK"
             }
         ]
         
@@ -384,6 +385,6 @@ REST API at the CO
 
         [
             {
-                "Message": "Bad Request"
+                "Message": "Bad Request (Laser in use, illegal wavelength, etc)"
             }
         ]
